@@ -1,0 +1,60 @@
+public class Solution{
+
+	public String longestPalindrome(String input){
+
+		if(input == null || input.length() <= 0){
+			return null;
+		}
+
+		char[] arr = input.toCharArray();
+
+		int globalMax = 1;
+		int[] curLongestStartEnd = new int[2];
+
+		int curLength;
+
+		int pivot = 0;
+		int left = -1;
+		int right = -1;
+
+		while(pivot < arr.length - 1){
+			if(pivot - 1 >= 0){
+				if(arr[pivot] == arr[pivot - 1]){
+					left = pivot - 1;
+					right = pivot;
+					//curLength = 2;
+				}else if(arr[pivot - 1] == arr[pivot + 1]){
+					left = pivot - 1;
+					right = pivot + 1;
+					//curLength = 3;
+				}else {
+					left = -1;
+					right = -1;
+					//curLength = 0;
+				}
+			}
+			while(left >= 0 && right < arr.length){
+				if(arr[left - 1] != arr[right + 1]){
+					//calculate globalMax
+					if(globalMax < (right - left + 1)){
+						globalMax = right - left + 1;
+						curLongestStartEnd = {left, right};
+					}
+					break;
+				}
+				left--;
+				right++;
+			}
+			pivot++;
+		}
+		if(arr.length >= 2 && arr[arr.length - 1] == arr[arr.length - 2] && globalMax < 2){
+			globalMax = 2;
+			curLongestStartEnd = {arr.length - 1, arr.length - 2};
+		}
+
+		//我知道java里没有这个string输出写法，但是我想摆烂了（）
+		return input(curLongestStartEnd[0]:curLongestStartEnd[1]);
+
+	}
+
+}
