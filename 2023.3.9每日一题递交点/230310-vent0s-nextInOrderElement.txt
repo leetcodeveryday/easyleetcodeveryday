@@ -1,0 +1,45 @@
+public class Solution{
+	public Integer nextInOrderElement(Integer[] input, int index) {
+		if(input == null || input.length <= 1) {
+			return null;
+		}
+		int curParent;
+		if( index > (input.length / 2) - 1 ){
+			curParent = (index - 1) / 2;
+			if(curParent == (input.length / 2) - 1){
+				if(index == (curParent * 2 + 2)){
+					return null;
+				} else {
+					return input[curParent * 2 + 2];
+				}
+			}
+		}
+		int curLast = index;
+		int curPos = index;
+		if(curPos * 2 + 2 < input.length){
+			curPos = curPos * 2 + 2;
+			while(curPos * 2 + 1 < input.length){
+				if(input[curPos * 2 + 1] == null){
+					break;
+				} else {
+				curPos = curPos* 2 + 1;
+				}
+			}
+			return input[curPos];
+		}
+		if((curPos - 1) / 2 >= 0)){
+			curLast = curPos;
+			curPos = (curPos - 1) / 2;
+			while((curPos - 1) / 2) >= 0){
+				if(curLast == curPos * 2 +1){
+					return input[curPos];
+				}
+			curPos = (curPos - 1) / 2;
+			}
+		}
+		return null;
+
+	}
+}
+Time O(height)
+Space O(1)
