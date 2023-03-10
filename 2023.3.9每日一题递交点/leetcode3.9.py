@@ -5,7 +5,7 @@ def if_reverso(line):#输入字符串判断是否是回文串
     else:
         return [0,line]
 
-def extrator(Line):#读取字符串并且返回所有字串
+def extrator(Line):#读取字符串并且返回所有子串
     num=len(Line)
     strlist=[]
     for i in range(num-1):
